@@ -1,8 +1,9 @@
 from django.shortcuts import render, HttpResponse
-from myApp.models import DonneeCapteur
+from .models import DonneeCapteur
 import serial
-# Create your views here.
-def lire_et_enregistrer(request):
+
+def afficher_graphique(request):
+    # Lire les données de l'Arduino et les stocker dans la base de données
     try:
         port = serial.Serial('COM9', 9600)  # Assurez-vous d'ajuster le port série selon votre configuration
         donnees = port.readline()
@@ -12,14 +13,11 @@ def lire_et_enregistrer(request):
         # Enregistrez les données dans la base de données
         donnee_capteur = DonneeCapteur(temperature=donnees)
         donnee_capteur.save()
-
-        context ={'donnees': donnees}
-        return render(request, "myApp/index.html", context)
     except serial.SerialException:
         return HttpResponse("Erreur de communication avec l'Arduino")
-    
-def afficher_graphique(request):
-    donnees = DonneeCapteur.objects.all()[:10000]
+
+    # Récupérer les dernières données depuis la base de données
+    donnees = DonneeCapteur.objects.all().order_by('-timestamp')[:10000]
     labels = [str(d.timestamp) for d in donnees]
     valeurs = [d.temperature for d in donnees]
 

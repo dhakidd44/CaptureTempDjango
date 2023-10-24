@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse
-from .models import DonneeCapteur
+from myApp.models import DonneeCapteur
 import serial
 # Create your views here.
 def lire_et_enregistrer(request):
@@ -17,10 +17,9 @@ def lire_et_enregistrer(request):
         return render(request, "myApp/index.html", context)
     except serial.SerialException:
         return HttpResponse("Erreur de communication avec l'Arduino")
-    from .models import DonneeCapteur
-
+    
 def afficher_graphique(request):
-    donnees = DonneeCapteur.objects.all()
+    donnees = DonneeCapteur.objects.all()[:10000]
     labels = [str(d.timestamp) for d in donnees]
     valeurs = [d.temperature for d in donnees]
 

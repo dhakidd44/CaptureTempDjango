@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     {% load static %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'myApp/styles.css' %}">
     <title>Document</title>
 </head>
@@ -14,8 +15,8 @@
     
     <script>
         var ctx = document.getElementById('graphique-barres').getContext('2d');
-        var labels = JSON.parse('{{ labels|escapejs }}');
-        var valeurs = JSON.parse('{{ valeurs|escapejs }}');
+        var labels = {{ labels_json|safe }};
+        var valeurs = {{ valeurs_json|safe }};
     
         var graphique = new Chart(ctx, {
             type: 'bar',
@@ -39,5 +40,6 @@
         });
     </script>
     
+    <script src=" https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js "></script>
 </body>
 </html>

@@ -1,28 +1,34 @@
-/* Style du conteneur du graphique */
-#graphique-barres-container {
-    width: 80%; /* Largeur du conteneur */
-    margin: 20px auto; /* Centrer horizontalement */
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
 }
 
-/* Style du graphique à barres */
-#graphique-barres {
-    border: 1px solid #ccc; /* Bordure autour du graphique */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Style pour les étiquettes (labels) sur l'axe des X */
-#graphique-barres .chartjs-x-axis-label {
-    font-size: 14px; /* Taille de police */
-    font-weight: bold; /* Gras */
+canvas {
+    width: 100%;
+    height: auto;
 }
 
-/* Style pour les valeurs (valeurs) sur l'axe des Y */
-#graphique-barres .chartjs-y-axis-label {
-    font-size: 14px; /* Taille de police */
-    font-weight: bold; /* Gras */
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
-/* Style pour le titre du graphique */
-#graphique-barres .chartjs-title {
-    font-size: 18px; /* Taille de police */
-    font-weight: bold; /* Gras */
+.chart-container {
+    width: 100%;
+    height: 400px; /* Ajustez la hauteur comme souhaité */
+    overflow-y: auto;
 }

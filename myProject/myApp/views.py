@@ -6,7 +6,7 @@ import json
 def afficher_graphique(request):
     # Lire les données de l'Arduino et les stocker dans la base de données
     try:
-        port = serial.Serial('COM7', 9600)  # Assurez-vous d'ajuster le port série selon votre configuration
+        port = serial.Serial('COM7', 9600)  # Ajuster le port série selon votre configuration
         donnees = port.readline()
         donnees = float(donnees.decode().strip())  # Convertir les données en float
         port.close()

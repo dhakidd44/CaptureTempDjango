@@ -4,18 +4,27 @@
     <meta charset="UTF-8">
     {% load static %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'myApp/styles.css' %}">
     <title>Graphique de Température</title>
 </head>
 <body>
+    <nav class="navbar">
+        <h1>Météo Locale</h1>
+        <ul class="nav-links">
+            <li><a href="#current">Météo Actuelle</a></li>
+            <li><a href="#forecast">Prévisions</a></li>
+            <li><a href="#charts">Graphiques</a></li>
+        </ul>
+    </nav>
+
     <div class="container">
         <h1>Graphique de Température</h1>
         <div class="chart-container">
-        <canvas id="graphique-barres"></canvas>
+            <canvas id="graphique-barres"></canvas>
+        </div>
     </div>
-</div>
     
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         var ctx = document.getElementById('graphique-barres').getContext('2d');
         var labels = {{ labels_json|safe }};
@@ -41,15 +50,14 @@
                 }
             }
         });
+        
         // Fonction pour rafraîchir la page toutes les X millisecondes (par exemple, toutes les 60 secondes).
-    function refreshPage() {
-        location.reload();
-    }
+        function refreshPage() {
+            location.reload();
+        }
 
-    // Appelez la fonction de rafraîchissement toutes les 60000 millisecondes (60 secondes).
-    setInterval(refreshPage, 60000); // 60000 ms = 60 s
+        // Appelez la fonction de rafraîchissement toutes les 60000 millisecondes (60 secondes).
+        setInterval(refreshPage, 60000); // 60000 ms = 60 s
     </script>
-    
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </body>
 </html>
